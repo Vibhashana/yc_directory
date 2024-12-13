@@ -39,13 +39,13 @@ A modern web application for startup pitches built with Next.js 15, Sanity CMS, 
     npm install
     ```
 3. Set up environment variables:
-    ```
-    #for authentication (GitHub):
+    ```bash
+    # for authentication (GitHub):
     AUTH_SECRET=
     AUTH_GITHUB_ID=
     AUTH_GITHUB_SECRET=
 
-    #for sanity:
+    # for sanity:
     NEXT_PUBLIC_SANITY_PROJECT_ID=
     NEXT_PUBLIC_SANITY_DATASET=
     NEXT_PUBLIC_SANITY_API_VERSION=
