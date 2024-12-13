@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YC Directory
+
+A modern web application for startup pitches built with Next.js 14, Sanity CMS, and TypeScript. The platform allows users to submit, view, and explore startup pitches with a clean and intuitive interface.
+
+## Features
+
+- 🚀 Modern tech stack with Next.js 14 and TypeScript
+- 📝 Markdown editor for pitch submissions
+- 🔐 Authentication system
+- 📊 View tracking for pitches
+- 🖼️ Image handling with remote patterns support
+- 🔍 Search functionality
+- 🎯 Category-based filtering
+- ⚡ Real-time content updates
+- 💾 Sanity CMS backend integration
+- 🎨 Clean & modern UI with TailwindCSS
+- 📱 Responsive design
+
+
+## Tech Stack
+
+- **Frontend Framework**: Next.js 14
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **CMS**: Sanity.io
+- **Authentication**: NextAuth.js
+- **Markdown**: Markdown-it & MDEditor
+- **Font**: Work Sans (custom)
+- **UI Components**: Shadcn UI
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. Clone the repository
+2. Install dependencies:
+```bash:terminal
+npm install
 ```
+3. Set up environment variables:
+```
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=
+NEXT_PUBLIC_SANITY_API_VERSION=
+SANITY_WRITE_TOKEN=
+```
+4. Run the development server:
+```bash:terminal
+npm run dev
+```
+5. Access Sanity Studio at `/studio` route
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `/app` - Next.js application routes and pages
+- `/components` - Reusable React components
+- `/sanity` - Sanity CMS configuration and schemas
+- `/lib` - Utility functions and actions
+- `/hooks` - Custom React hooks
+- `/public` - Static assets
+- `/hooks` - Custom React hooks
+- `/types` - TypeScript types
+- `/utils` - Utility functions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Sanity Schema
+The project includes two main content types:
 
-## Learn More
+**Startup**
+  - Title
+  - Slug
+  - Author reference
+  - Views count
+  - Description
+  - Category
+  - Image
+  - Pitch (Markdown)
 
-To learn more about Next.js, take a look at the following resources:
+**Author**
+  - Name
+  - Username
+  - Email
+  - Image
+  - Bio
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features in Detail
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Startup Submission
+Users can submit their startups with:
+- Title
+- Description
+- Category
+- Image URL
+- Detailed pitch (with Markdown support)
 
-## Deploy on Vercel
+### Viewing Startups
+- Detailed startup pages with view tracking
+- Category filtering
+- Author profiles
+- Responsive image handling
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Authentication
+- Secure user authentication
+- Protected routes for startup submission
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Development
+
+The project uses several development tools and configurations:
+
+- `ESLint` for code linting
+- `Prettier` for code formatting
+- `TypeScript` for type safety
+- `Tailwind CSS` for styling
+- `Sanity TypeGen` for type generation
