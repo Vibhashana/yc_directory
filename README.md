@@ -21,7 +21,7 @@ A modern web application for startup pitches built with Next.js 14, Sanity CMS, 
 
 ## Tech Stack
 
-- **Frontend Framework**: Next.js 14
+- **Frontend Framework**: Next.js 15
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **CMS**: Sanity.io
