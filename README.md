@@ -10,6 +10,7 @@ A modern web application for startup pitches built with Next.js 14, Sanity CMS, 
 - 📊 View tracking for pitches
 - 🖼️ Image handling with remote patterns support
 - 🔍 Search functionality
+- 👁️ View tracking
 - 🎯 Category-based filtering
 - ⚡ Real-time content updates
 - 💾 Sanity CMS backend integration
