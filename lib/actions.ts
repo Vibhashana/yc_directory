@@ -3,7 +3,6 @@
 import { auth } from "@/auth";
 import { parseServerActionResponse } from "./utils";
 import slugify from "slugify";
-import { client } from "@/sanity/lib/client";
 import { writeClient } from "@/sanity/lib/write-client";
 
 export const createPitch = async (
