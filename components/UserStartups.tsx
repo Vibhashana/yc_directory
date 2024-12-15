@@ -6,7 +6,7 @@ const UserStartups = async ({ id }: { id: string }) => {
   const startups = await client.fetch(STARTUPS_BY_AUTHOR_QUERY, { id });
 
   return (
-    <li>
+    <>
       {startups.length > 0 ? (
         startups.map((startup: StartTypeCard) => (
           <StartupCard key={startup?._id} post={startup} />
@@ -14,7 +14,7 @@ const UserStartups = async ({ id }: { id: string }) => {
       ) : (
         <p className="no-result">No Startups</p>
       )}
-    </li>
+    </>
   );
 };
 
