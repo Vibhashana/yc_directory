@@ -19,7 +19,7 @@ const StartupForm = () => {
 
   const router = useRouter();
 
-  const handleFormSubmit = async (prevState: any, formData: FormData) => {
+  const handleFormSubmit = async (prevState: unknown, formData: FormData) => {
     try {
       const formValues = {
         title: formData.get("title") as string,
@@ -30,8 +30,6 @@ const StartupForm = () => {
       };
 
       await formSchema.parseAsync(formValues);
-
-      console.log(formValues);
 
       const result = await createPitch(prevState, formData, pitch);
 
@@ -59,7 +57,7 @@ const StartupForm = () => {
         });
 
         return {
-          ...prevState,
+          ...(prevState as object),
           error: "Validation failed",
           status: "ERROR",
         };
@@ -72,14 +70,14 @@ const StartupForm = () => {
       });
 
       return {
-        ...prevState,
+        ...(prevState as object),
         error: "An unexpected error has occurred",
         status: "ERROR",
       };
     }
   };
 
-  const [state, formAction, isPending] = useActionState(handleFormSubmit, {
+  const [, formAction, isPending] = useActionState(handleFormSubmit, {
     error: "",
     status: "INITIAL",
   });
@@ -169,7 +167,6 @@ const StartupForm = () => {
             disallowedElements: ["style"],
           }}
         />
-        {/* <MDEditor.Markdown source={pitch} style={{ whiteSpace: "pre-wrap" }} /> */}
 
         {errors.pitch && <p className="startup-form_error">{errors.pitch}</p>}
       </div>
