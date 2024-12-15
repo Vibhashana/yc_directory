@@ -1,8 +1,12 @@
 import SearchForm from "@/components/SearchForm";
 import StartupCard, { StartTypeCard } from "@/components/StartupCard";
-import { STARTUPS_QUERY } from "@/sanity/lib/queries";
+import {
+  MOST_POPULAR_STARTUPS_QUERY,
+  STARTUPS_QUERY,
+} from "@/sanity/lib/queries";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { auth } from "@/auth";
+import { client } from "@/sanity/lib/client";
 
 export default async function Home({
   searchParams,
@@ -16,7 +20,10 @@ export default async function Home({
 
   console.log("session", session);
 
-  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
+  const [{data: posts}, mostPopularStartups] = await Promise.all([
+    sanityFetch({ query: STARTUPS_QUERY, params }),
+    client.fetch(MOST_POPULAR_STARTUPS_QUERY),
+  ]);
 
   return (
     <>
@@ -47,6 +54,17 @@ export default async function Home({
           )}
         </ul>
       </section>
+
+      {mostPopularStartups.length > 0 && (
+        <section className="section_container">
+          <p className="text-30-semibold">Most Popular Startups</p>
+          <ul className="mt-7 card_grid">
+            {mostPopularStartups.map((startup: StartTypeCard) => (
+              <StartupCard key={startup?._id} post={startup} />
+            ))}
+          </ul>
+        </section>
+      )}
 
       <SanityLive />
     </>

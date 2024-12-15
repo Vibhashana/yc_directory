@@ -86,3 +86,44 @@ export const STARTUPS_BY_AUTHOR_QUERY = defineQuery(`
     }
   }
 `);
+
+export const PLAYLIST_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "playlist" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    select[] -> {
+      _id,
+      title,
+      slug,
+      image,
+      category,
+      views,
+      description,
+      _createdAt,
+      author -> {
+        _id,
+        name,
+        image
+      }
+    }
+  }
+`);
+
+export const MOST_POPULAR_STARTUPS_QUERY = defineQuery(`
+  *[_type == "startup" && views > 100] | order(views desc) [0..3] {
+    _id,
+    title,
+    slug,
+    image,
+    category,
+    views,
+    description,
+    _createdAt,
+    author -> {
+      _id,
+      name,
+      image
+    }
+  }
+`);
