@@ -1,6 +1,8 @@
 import { auth, signIn, signOut } from "@/auth";
+import { BadgePlusIcon, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const Navbar = async () => {
   const session = await auth();
@@ -20,7 +22,8 @@ const Navbar = async () => {
           {session && session?.user ? (
             <>
               <Link href="/startup/create">
-                <span>Create</span>
+                <span className="max-sm:hidden">Create</span>
+                <BadgePlusIcon size={24} className="sm:hidden" />
               </Link>
               <form
                 action={async () => {
@@ -29,19 +32,24 @@ const Navbar = async () => {
                 }}
               >
                 <button type="submit">
-                  <span>Logout</span>
+                  <span className="max-sm:hidden">Logout</span>
+                  <LogOut size={24} className="sm:hidden text-red-500" />
                 </button>
               </form>
 
-              <Link href={`/user/id/${session?.user?.id}`}>
-                {/* <Image
-                                    alt={`${session?.user?.name}'s image`}
-                                    src={`${session?.user?.image}`}
-                                    width={20}
-                                    height={20}
-                                    className="w-5 h-5 rounded"
-                                /> */}
-                <span>{session?.user?.name}</span>
+              <Link href={`/user/${session?.id}`}>
+                <Avatar className="size-10">
+                  <AvatarImage
+                    src={session?.user?.image || ""}
+                    alt={session?.user?.name || ""}
+                  />
+                  <AvatarFallback className="font-bold border-2 border-black">
+                    {session?.user?.name
+                      .split(" ")
+                      .map((n: string, i: number) => (i < 2 ? n[0] : ""))
+                      .join("")}
+                  </AvatarFallback>
+                </Avatar>
               </Link>
             </>
           ) : (
