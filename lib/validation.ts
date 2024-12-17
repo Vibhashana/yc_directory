@@ -1,10 +1,23 @@
+import { client } from "@/sanity/lib/client";
+import { STARTUP_BY_TITLE_QUERY } from "@/sanity/lib/queries";
 import { z } from "zod";
 
 export const formSchema = z.object({
   title: z
     .string()
     .min(3, "Title must be at least 3 characters")
-    .max(100, "Title cannot exceed 100 characters"),
+    .max(100, "Title cannot exceed 100 characters")
+    .refine(
+      async (title) => {
+        try {
+          const exists = await client.fetch(STARTUP_BY_TITLE_QUERY, { title });
+          return !exists;
+        } catch {
+          return false;
+        }
+      },
+      { message: "This startup name is already taken" }
+    ),
   description: z
     .string()
     .min(20, "Description must be at least 20 characters")

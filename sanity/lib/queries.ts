@@ -127,3 +127,13 @@ export const MOST_POPULAR_STARTUPS_QUERY = defineQuery(`
     }
   }
 `);
+
+export const STARTUP_BY_SLUG_QUERY =
+  defineQuery(`*[_type == "startup" && slug.current == $slug][0] {
+  _id,
+  slug
+}`);
+
+export const STARTUP_BY_TITLE_QUERY = defineQuery(
+  `*[_type == "startup" && title == $title][0]._id`
+);

@@ -5,8 +5,8 @@ import {
   STARTUPS_QUERY,
 } from "@/sanity/lib/queries";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { auth } from "@/auth";
 import { client } from "@/sanity/lib/client";
+import { auth } from "@/auth";
 
 export default async function Home({
   searchParams,
@@ -20,7 +20,7 @@ export default async function Home({
 
   console.log("session", session);
 
-  const [{data: posts}, mostPopularStartups] = await Promise.all([
+  const [{ data: posts }, mostPopularStartups] = await Promise.all([
     sanityFetch({ query: STARTUPS_QUERY, params }),
     client.fetch(MOST_POPULAR_STARTUPS_QUERY),
   ]);
